@@ -1,0 +1,13 @@
+{
+  "manifest_version": 3,
+  "name": "Word Changer",
+  "version": "1.0",
+  "description": "Changes specified words on a website",
+  "host_permissions": ["https://www.coursera.org/*"],
+  "content_scripts": [
+    {
+      "matches": ["https://www.coursera.org/*"],
+      "js": ["content.js"]
+    }
+  ]
+}
