@@ -9,5 +9,18 @@
       "matches": ["https://www.coursera.org/*"],
       "js": ["content.js"]
     }
-  ]
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "Images/ASU-logo.png",
+      "48": "Images/ASU-logo.png",
+      "128": "Images/ASU-logo.png"
+    }
+  },
+  "icons": {
+    "16": "Images/ASU-logo.png",
+    "48": "Images/ASU-logo.png",
+    "128": "Images/ASU-logo.png"
+  }
 }

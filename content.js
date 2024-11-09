@@ -58,7 +58,26 @@ function changeLinkColor() {
   });
 }
 
-// Run on page load
+function addTextSibling() {
+  const logo = document.querySelector(".rc-CourseraLogo"); // Select the logo element
+  if (logo && !logo.nextSibling) {
+    // Only add text if the logo exists and no sibling text yet
+    console.log("Logo found:", logo);
+    const textNode = document.createElement("span"); // Create a new <span> element
+    textNode.textContent = "Webwork"; // Set the text content
+    textNode.style.marginRight = "5px"; // Optional: add some space between the logo and the text
+    logo.insertAdjacentElement("afterend", textNode); // Insert the text node after the logo
+  }
+}
+
+function changeLogoSrc() {
+  const logo = document.querySelector(".rc-CourseraLogo");
+  if (logo) {
+    logo.src = chrome.runtime.getURL("Images/ASU-logo.png");
+  }
+}
+
+// Run this function to apply the color change on page load
 changeLinkColor();
 replaceCssColor();
 changeFirstButtonColor();
@@ -75,19 +94,42 @@ traverseDOM(document.body);
 const observer = new MutationObserver((mutations) => {
   mutations.forEach((mutation) => {
     mutation.addedNodes.forEach((node) => {
+      // Handle dynamically loaded links and buttons
       if (node.tagName === "A") {
         node.style.color = "#9a1c01";
       } else if (node.querySelectorAll) {
         node.querySelectorAll("a").forEach((link) => {
           link.style.color = "#9a1c01";
         });
-        node.querySelectorAll("button").forEach((button) => {
-          makeButtonsRed(button);
-        });
       }
+
+      // Handle dynamically loaded logo
+      if (
+        node.classList &&
+        node.classList.contains("rc-CourseraLogo") &&
+        node.tagName === "IMG"
+      ) {
+        // Change the logo src
+        console.log("Logo detected in mutation observer");
+        changeLogoSrc(); // Call the logo change function
+        addTextSibling(); // Add the sibling text "Webwork" if needed
+      } else if (node.querySelectorAll) {
+        // Also look for logo inside added nodes with nested content
+        const logo = node.querySelector(".rc-CourseraLogo");
+        if (logo && logo.tagName === "IMG") {
+          console.log("Logo detected in added nodes");
+          changeLogoSrc(); // Call the logo change function
+          addTextSibling(); // Add the sibling text "Webwork" if needed
+        }
+      }
+
+      // Traverse the DOM for other changes
       traverseDOM(node);
     });
   });
+
+  // Check and ensure "Webwork" text is added if logo is present initially
+  addTextSibling();
 });
 
 // Start observing the document for changes
