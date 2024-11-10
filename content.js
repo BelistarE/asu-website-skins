@@ -30,9 +30,15 @@ function changeFirstButtonColor() {
 
 function changeTextColor() {
   const text = document.querySelector(".css-yy9yht"); // Select the text element
+  const arrows = document.querySelector(".css-15talrd"); // Select the arrows element
+  const selectedElement = document.querySelector(".css-zgpty.cds-tab-selected");
+  const borderClr = document.querySelector(".cds-105");
   if (text) {
     console.log("Text found:", text);
     text.style.color = "#9a1c01"; // Change the text color
+    arrows.style.color = "#9a1c01";
+    selectedElement.style.color = "#9a1c01";
+    borderClr.style.borderColor = "#9a1c01";
   } else {
     console.error("Text element not found");
   }
@@ -86,9 +92,15 @@ function addTextSibling() {
 
 function changeLogoSrc() {
   const logo = document.querySelector(".rc-CourseraLogo");
+  const imgContainer = document.querySelector(
+    ".rc-PageHeader .c-ph-nav .c-container .c-ph-logo"
+  );
   if (logo && logo.tagName === "IMG") {
     logo.onload = function () {
       console.log("Logo image loaded successfully");
+      logo.style.width = "auto"; // Set the desired width
+      logo.style.height = "60px";
+      imgContainer.style.padding = "0px";
     };
     logo.onerror = function () {
       console.error("Error loading logo image");
@@ -147,7 +159,6 @@ const observer = new MutationObserver((mutations) => {
         }
       } else if (mutation.type === "childList") {
         changeFirstButtonColor();
-      } else if (mutation.type === "childList") {
         changeTextColor();
       }
 
