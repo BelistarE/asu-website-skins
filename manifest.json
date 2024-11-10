@@ -22,5 +22,11 @@
     "16": "Images/ASU-logo.png",
     "48": "Images/ASU-logo.png",
     "128": "Images/ASU-logo.png"
-  }
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["Images/ASU-logo.png"],
+      "matches": ["https://www.coursera.org/*"]
+    }
+  ]
 }

@@ -18,9 +18,23 @@ function replaceWords(node) {
 }
 
 function changeFirstButtonColor() {
-  const firstButton = document.querySelector("button"); // Select the first <button> in the DOM
+  const firstButton = document.querySelector(".css-136aa4o"); // Select the first <button> in the DOM
   if (firstButton) {
-    firstButton.style.backgroundColor = "#9a1c01"; // Set to your desired color
+    console.log("First button found:", firstButton);
+    firstButton.style.backgroundColor = "#9a1c01";
+    firstButton.style.border = "2px solid black";
+  } else {
+    console.error("First button not found");
+  }
+}
+
+function changeTextColor() {
+  const text = document.querySelector(".css-yy9yht"); // Select the text element
+  if (text) {
+    console.log("Text found:", text);
+    text.style.color = "#9a1c01"; // Change the text color
+  } else {
+    console.error("Text element not found");
   }
 }
 
@@ -72,12 +86,22 @@ function addTextSibling() {
 
 function changeLogoSrc() {
   const logo = document.querySelector(".rc-CourseraLogo");
-  if (logo) {
-    logo.src = chrome.runtime.getURL("Images/ASU-logo.png");
+  if (logo && logo.tagName === "IMG") {
+    logo.onload = function () {
+      console.log("Logo image loaded successfully");
+    };
+    logo.onerror = function () {
+      console.error("Error loading logo image");
+    };
+    logo.src =
+      "chrome-extension://bdghacdcldjmikminbailgibeegeglfj/Images/ASU-logo.png";
+    console.log("Logo src set to:", logo.src);
+  } else {
+    console.error("Logo element not found or not an IMG tag");
   }
 }
-
 // Run this function to apply the color change on page load
+changeLogoSrc();
 changeLinkColor();
 replaceCssColor();
 changeFirstButtonColor();
@@ -121,6 +145,10 @@ const observer = new MutationObserver((mutations) => {
           changeLogoSrc(); // Call the logo change function
           addTextSibling(); // Add the sibling text "Webwork" if needed
         }
+      } else if (mutation.type === "childList") {
+        changeFirstButtonColor();
+      } else if (mutation.type === "childList") {
+        changeTextColor();
       }
 
       // Traverse the DOM for other changes
