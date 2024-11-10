@@ -1,6 +1,9 @@
 # asu-website-skins
 
 changes certain websites to have an ASU skin. This is mainly so i can pretend to be productive and troll my friends haha.
+
+---
+
 ![troll face gif](https://media.tenor.com/uZ5B1eq7v9AAAAAM/troll-face-gif.gif)
 
 ---
@@ -8,11 +11,11 @@ changes certain websites to have an ASU skin. This is mainly so i can pretend to
 ### How to install
 
 1.Download this repository in full.
-2.Type **chrome://extensions/** in your search bar.
+2.Type `chrome://extensions/` in your search bar.
 3.Turn on developer mode.
 4.Click on **"Load unpacked"**
 5.Select the extension folder
-6.You now have the extension :)
+6.You now have the extension :D
 
 #### Currently supported sites:
 
