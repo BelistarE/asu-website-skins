@@ -10,12 +10,12 @@ changes certain websites to have an ASU skin. This is mainly so i can pretend to
 
 ### How to install
 
-1.Download this repository in full.
-2.Type `chrome://extensions/` in your search bar.
-3.Turn on developer mode.
-4.Click on **"Load unpacked"**
-5.Select the extension folder
-6.You now have the extension :D
+1. Download this repository in full.
+2. Type `chrome://extensions/` in your search bar.
+3. Turn on developer mode.
+4. Click on **"Load unpacked"**
+5. Select the extension folder
+6. You now have the extension :D
 
 #### Currently supported sites:
 
