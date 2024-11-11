@@ -23,6 +23,7 @@ function changeFirstButtonColor() {
     console.log("First button found:", firstButton);
     firstButton.style.backgroundColor = "#9a1c01";
     firstButton.style.border = "2px solid black";
+    firstButton.style.boxShadow = "none";
   } else {
     console.error("First button not found");
   }
@@ -30,17 +31,27 @@ function changeFirstButtonColor() {
 
 function changeTextColor() {
   const text = document.querySelector(".css-yy9yht"); // Select the text element
-  const arrows = document.querySelector(".css-15talrd"); // Select the arrows element
+  const arrows = document.querySelectorAll(".css-15talrd");
   const selectedElement = document.querySelector(".css-zgpty.cds-tab-selected");
   const borderClr = document.querySelector(".cds-105");
+  const rand1 = document.querySelector(".css-15talrd");
+  const bottom = document.querySelector(".css-1s96oj");
+  const boxShadow = document.querySelector(".css-1s96oj");
   if (text) {
     console.log("Text found:", text);
     text.style.color = "#9a1c01"; // Change the text color
-    arrows.style.color = "#9a1c01";
     selectedElement.style.color = "#9a1c01";
     borderClr.style.borderColor = "#9a1c01";
+    rand1.style.color = "#9a1c01";
+    bottom.style.color = "#9a1c01";
+    boxShadow.style.boxShadow = "0 0 0 2px #9a1c01";
   } else {
     console.error("Text element not found");
+  }
+  if (arrows.length > 0) {
+    arrows.forEach((arrow) => {
+      arrow.style.color = "#9a1c01";
+    });
   }
 }
 
@@ -85,7 +96,8 @@ function addTextSibling() {
     console.log("Logo found:", logo);
     const textNode = document.createElement("span"); // Create a new <span> element
     textNode.textContent = "Webwork"; // Set the text content
-    textNode.style.marginRight = "5px"; // Optional: add some space between the logo and the text
+    textNode.style.fontWeight = "bold";
+    textNode.style.marginRight = "50px"; // Optional: add some space between the logo and the text
     logo.insertAdjacentElement("afterend", textNode); // Insert the text node after the logo
   }
 }
