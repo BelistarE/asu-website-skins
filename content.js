@@ -3,7 +3,6 @@ console.log("Content script loaded");
 const wordsToReplace = {
   Coursera: "ASU",
   Okay: "poop",
-  // Add more words as needed
 };
 
 function replaceWords(node) {
@@ -35,22 +34,31 @@ function changeTextColor() {
   const selectedElement = document.querySelector(".css-zgpty.cds-tab-selected");
   const borderClr = document.querySelector(".cds-105");
   const rand1 = document.querySelector(".css-15talrd");
-  const bottom = document.querySelector(".css-1s96oj");
-  const boxShadow = document.querySelector(".css-1s96oj");
+  const bottom = document.querySelectorAll(".css-1s96oj");
+  const help = document.querySelector(".css-18vnh69");
+  const indicator = document.querySelector(".cds-tab-list-indicator");
+  const saveNote = document.querySelector(".css-l0otf2");
+
   if (text) {
     console.log("Text found:", text);
     text.style.color = "#9a1c01"; // Change the text color
     selectedElement.style.color = "#9a1c01";
     borderClr.style.borderColor = "#9a1c01";
     rand1.style.color = "#9a1c01";
-    bottom.style.color = "#9a1c01";
-    boxShadow.style.boxShadow = "0 0 0 2px #9a1c01";
+    help.style.display = "none";
+    indicator.style.backgroundColor = "#9a1c01";
+    saveNote.style.color = "#9a1c01";
   } else {
     console.error("Text element not found");
   }
   if (arrows.length > 0) {
     arrows.forEach((arrow) => {
       arrow.style.color = "#9a1c01";
+    });
+  }
+  if (bottom.length > 0) {
+    bottom.forEach((link) => {
+      link.style.color = "#9a1c01";
     });
   }
 }
@@ -185,3 +193,33 @@ const observer = new MutationObserver((mutations) => {
 
 // Start observing the document for changes
 observer.observe(document.body, { childList: true, subtree: true });
+
+//tabs
+// Listen for messages from the popup script
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+  if (request.isActive !== undefined) {
+    // Perform actions based on the active state
+    if (request.isActive) {
+      activateExtensionFeatures();
+    } else {
+      deactivateExtensionFeatures();
+    }
+  }
+});
+
+// Check the stored state when the content script loads
+chrome.storage.sync.get("isActive", (data) => {
+  if (data.isActive) {
+    activateExtensionFeatures();
+  }
+});
+
+function activateExtensionFeatures() {
+  // Your code to apply the extension's functionality
+  console.log("Extension is active");
+}
+
+function deactivateExtensionFeatures() {
+  // Your code to remove or disable the functionality
+  console.log("Extension is inactive");
+}

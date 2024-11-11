@@ -18,6 +18,7 @@
       "128": "Images/ASU-logo.png"
     }
   },
+  "permissions": ["storage"],
   "icons": {
     "16": "Images/ASU-logo.png",
     "48": "Images/ASU-logo.png",
