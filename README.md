@@ -21,6 +21,7 @@ changes certain websites to have an ASU skin. This is mainly so i can pretend to
 
 - Coursera (alpha grindset)
 - Kittens game (https://kittensgame.com/web/) (I love this game with all my heart)
+- Microsoft Learn - so you can learn dev skills and have it look like its part of your course.
 
 #### Sites I wanna change in the future
 

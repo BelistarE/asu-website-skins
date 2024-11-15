@@ -8,6 +8,10 @@
     {
       "matches": ["https://www.coursera.org/*"],
       "js": ["content.js"]
+    },
+    {
+      "matches": ["https://learn.microsoft.com/en-us/training/modules/*"],
+      "js": ["content_microsoft.js"]
     }
   ],
   "action": {
